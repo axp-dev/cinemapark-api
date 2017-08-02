@@ -65,7 +65,7 @@ class CinemaPark
      *
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function getRepertoir($id)
     {
@@ -79,11 +79,25 @@ class CinemaPark
      *
      * @param int $id
      *
-     * @return mixed
+     * @return array
      */
     public function getMultiplexRepertoir($id)
     {
         $url = $this->endpoints['information'] . '/multiplex_repertoir/' . $id . '/';
+
+        return $this->query($url);
+    }
+
+    /**
+     * Получение дополнительной информации по фильму.
+     *
+     * @param $id
+     *
+     * @return array
+     */
+    public function getFilmInfo($id)
+    {
+        $url = $this->endpoints['information'] . '/film_info/' . $id . '/';
 
         return $this->query($url);
     }
