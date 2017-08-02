@@ -1,0 +1,25 @@
+{
+  "name": "axp-dev/cinemapark-api",
+  "description": "Yandex Metrika API Library",
+  "homepage": "https://github.com/axp-dev/ya-metrika",
+  "keywords": ["cinemapark", "cinema", "api"],
+  "version": "1.0.1",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Pushkarev",
+      "email": "axp-dev@yandex.com",
+      "homepage": "https://github.com/axp-dev"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "AXP\\CinemaPark\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
+}
