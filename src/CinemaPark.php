@@ -103,6 +103,18 @@ class CinemaPark
     }
 
     /**
+     * Получение списка залов по всем мультиплексам.
+     *
+     * @return array
+     */
+    public function getHalls()
+    {
+        $url = $this->endpoints['information'] . '/halls/';
+
+        return $this->query($url);
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
