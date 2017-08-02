@@ -75,6 +75,20 @@ class CinemaPark
     }
 
     /**
+     * Получение расписания мультиплекса.
+     *
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getMultiplexRepertoir($id)
+    {
+        $url = $this->endpoints['information'] . '/multiplex_repertoir/' . $id . '/';
+
+        return $this->query($url);
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
