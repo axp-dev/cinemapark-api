@@ -37,6 +37,18 @@ class CinemaPark
     }
 
     /**
+     * Получение списка фильмов.
+     *
+     * @return array
+     */
+    public function getFilms()
+    {
+        $url = $this->endpoints['information'] . '/films/';
+
+        return $this->query($url);
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
