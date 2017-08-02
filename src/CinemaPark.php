@@ -91,7 +91,7 @@ class CinemaPark
     /**
      * Получение дополнительной информации по фильму.
      *
-     * @param $id
+     * @param int $id
      *
      * @return array
      */
@@ -122,6 +122,20 @@ class CinemaPark
     public function getFormats()
     {
         $url = $this->endpoints['information'] . '/formats/';
+
+        return $this->query($url);
+    }
+
+    /**
+     * Комплексная выгрузка текущего расписания мультиплекса.
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function getTimeTable($id)
+    {
+        $url = $this->endpoints['information'] . '/timetable/' . $id . '/';
 
         return $this->query($url);
     }
