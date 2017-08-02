@@ -49,13 +49,27 @@ class CinemaPark
     }
 
     /**
-     * Привязка фильмов к мультиплексам
+     * Привязка фильмов к мультиплексам.
      *
      * @return array
      */
     public function getFilmsMultiplexes()
     {
         $url = $this->endpoints['information'] . '/films_multiplexes/';
+
+        return $this->query($url);
+    }
+
+    /**
+     * Получение расписания фильма.
+     *
+     * @param int $id
+     *
+     * @return mixed
+     */
+    public function getRepertoir($id)
+    {
+        $url = $this->endpoints['information'] . '/repertoir/' . $id . '/';
 
         return $this->query($url);
     }
