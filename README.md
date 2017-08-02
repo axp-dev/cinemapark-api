@@ -1,6 +1,10 @@
 # Cinema Park API
 PHP библиотека для интеграции с информационными системами Синема Парк.
 
+[![Latest Stable Version](https://poser.pugx.org/axp-dev/cinemapark-api/v/stable)](https://packagist.org/packages/axp-dev/cinemapark-api)
+[![Latest Unstable Version](https://poser.pugx.org/axp-dev/cinemapark-api/v/unstable)](https://packagist.org/packages/axp-dev/cinemapark-api)
+[![License](https://poser.pugx.org/axp-dev/cinemapark-api/license)](https://packagist.org/packages/axp-dev/cinemapark-api)
+
 ## Оглавление
 1. [Старт](#Установка)
     + [Composer](#Установка-через-composer)
