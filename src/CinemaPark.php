@@ -115,6 +115,18 @@ class CinemaPark
     }
 
     /**
+     * Получение списка форматов показа фильмов.
+     *
+     * @return array
+     */
+    public function getFormats()
+    {
+        $url = $this->endpoints['information'] . '/formats/';
+
+        return $this->query($url);
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
