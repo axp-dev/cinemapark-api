@@ -20,9 +20,21 @@ class CinemaPark
      * @var array
      */
     private $endpoints = [
-        'information' => 'http://json.integration.www.cinemapark.ru/',
-        'booking'     => 'http://api.booking.www.cinemapark.ru/'
+        'information' => 'http://json.integration.www.cinemapark.ru',
+        'booking'     => 'http://api.booking.www.cinemapark.ru'
     ];
+
+    /**
+     * Получение списка мультиплексов и городов.
+     *
+     * @return array
+     */
+    public function getMultiplexes()
+    {
+        $url = $this->endpoints['information'] . '/multiplexes/';
+
+        return $this->query($url);
+    }
 
     /**
      * Запрос к API
