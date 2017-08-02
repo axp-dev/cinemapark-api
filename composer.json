@@ -1,9 +1,9 @@
 {
   "name": "axp-dev/cinemapark-api",
-  "description": "Yandex Metrika API Library",
-  "homepage": "https://github.com/axp-dev/ya-metrika",
+  "description": "PHP library for integration with information systems Cinema Park",
+  "homepage": "https://github.com/axp-dev/cinemapark-api",
   "keywords": ["cinemapark", "cinema", "api"],
-  "version": "1.0.1",
+  "version": "0.0.1",
   "license": "MIT",
   "authors": [
     {
