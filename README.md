@@ -37,3 +37,4 @@ age_limit | integer | Возрастное ограничение. В будущ
 category | string | Slug категории 
 title | string | Русскоязычное название фильма с учётом формата
 film_id | integer | Идентификатор фильма
+youtubeid | string | Список трейлеров с Youtube (через запятую) 
