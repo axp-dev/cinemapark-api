@@ -11,7 +11,6 @@ use GuzzleHttp\Exception\ClientException;
  * @link    https://github.com/axp-dev/cinemapark-api
  * @package AXP\CinemaPark
  */
-
 class CinemaPark
 {
     /**
@@ -141,20 +140,50 @@ class CinemaPark
     }
 
     /**
+     * Проверка возможности начать сессию выбора мест для бронирования или покупки мест
+     *
+     * @param int $multiplex_id
+     * @param int $repertoir_id
+     * @param int $mode
+     *
+     * @return array
+     */
+    public function checkBSession($multiplex_id, $repertoir_id, $mode)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'mode'         => $mode,
+        ];
+        $url = $this->endpoints['booking'] . '/check_b_session/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
+     * @param string $responseType
      *
      * @return mixed
      * @throws CinemaParkException
-     *
      */
-    protected function query($url)
+    protected function query($url, $responseType = 'json')
     {
         try {
             $client = new GuzzleClient();
             $response = $client->request('GET', $url);
-            $result = json_decode($response->getBody(), true);
+            $result = [];
+
+            switch ($responseType) {
+                case 'xml':
+                    $result = (array) simplexml_load_string($response->getBody());
+                    break;
+                case 'json':
+                    $result = json_decode($response->getBody(), true);
+                    break;
+            }
 
             return $result;
         } catch (ClientException $e) {
