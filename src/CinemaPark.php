@@ -197,7 +197,28 @@ class CinemaPark
         ];
         $url = $this->endpoints['booking'] . '/seats_layout/?' . http_build_query($params);
 
-        print_r($url);
+        return $this->query($url, 'xml');
+    }
+
+    /**
+     * Получение состояния мест.
+     *
+     * @param int    $multiplex_id
+     * @param int    $repertoir_id
+     * @param string $b_session_id
+     * @param int    $timestamp_tz
+     *
+     * @return array
+     */
+    public function seatStates($multiplex_id, $repertoir_id, $b_session_id, $timestamp_tz = 0)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'b_session_id' => $b_session_id,
+            'timestamp_tz' => $timestamp_tz,
+        ];
+        $url = $this->endpoints['booking'] . '/seat_states/?' . http_build_query($params);
 
         return $this->query($url, 'xml');
     }
@@ -239,7 +260,7 @@ class CinemaPark
      * @param string $url
      * @param string $responseType
      *
-     * @return mixed
+     * @return array
      * @throws CinemaParkException
      */
     protected function query($url, $responseType = 'json')
