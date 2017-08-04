@@ -140,7 +140,7 @@ class CinemaPark
     }
 
     /**
-     * Проверка возможности начать сессию выбора мест для бронирования или покупки мест
+     * Проверка возможности начать сессию выбора мест для бронирования или покупки мест.
      *
      * @param int $multiplex_id
      * @param int $repertoir_id
@@ -161,7 +161,7 @@ class CinemaPark
     }
 
     /**
-     * Инициализация сессии выбора мест для бронирования или покупки
+     * Инициализация сессии выбора мест для бронирования или покупки.
      *
      * @param int $multiplex_id
      * @param int $repertoir_id
@@ -182,6 +182,58 @@ class CinemaPark
     }
 
     /**
+     * Получение геометрической схемы зала.
+     *
+     * @param int $multiplex_id
+     * @param int $repertoir_id
+     *
+     * @return array
+     */
+    public function seatsLayout($multiplex_id, $repertoir_id)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+        ];
+        $url = $this->endpoints['booking'] . '/seats_layout/?' . http_build_query($params);
+
+        print_r($url);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
+     * Форматируем XML в array
+     *
+     * @param \SimpleXMLElement $data
+     * @param array $result
+     *
+     * @return array
+     */
+    protected function normalizeSimpleXML($data, &$result) {
+        if (is_object($data)) {
+            $data = get_object_vars($data);
+        }
+
+        if (is_array($data)) {
+            foreach ($data as $key => $value) {
+                $res = null;
+                $this->normalizeSimpleXML($value, $res);
+
+                if (($key == '@attributes') && ($key)) {
+                    $result = $res;
+                } else {
+                    $result[$key] = $res;
+                }
+            }
+        } else {
+            $result = $data;
+        }
+
+        return $result;
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
@@ -199,7 +251,7 @@ class CinemaPark
 
             switch ($responseType) {
                 case 'xml':
-                    $result = (array) simplexml_load_string($response->getBody());
+                    $result = $this->normalizeSimpleXML(simplexml_load_string($response->getBody()), $result);
                     break;
                 case 'json':
                     $result = json_decode($response->getBody(), true);
