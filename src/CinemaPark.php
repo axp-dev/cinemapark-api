@@ -343,6 +343,39 @@ class CinemaPark
     }
 
     /**
+     * Фиксация факта оплаты заказа.
+     *
+     * @param int    $multiplex_id
+     * @param int    $order_id
+     * @param int    $provider_id
+     * @param int    $amount
+     * @param string $dt_payment
+     * @param mixed  $transaction_id
+     * @param string $payment_type
+     * @param string $payment_info
+     * @param string $security_key
+     *
+     * @return array
+     */
+    public function commitSSession($multiplex_id, $order_id, $provider_id, $amount, $dt_payment, $transaction_id, $payment_type, $payment_info, $security_key)
+    {
+        $params = [
+            'multiplex_id'     => $multiplex_id,
+            'order_id'         => $order_id,
+            'provider_id'      => $provider_id,
+            'amount'           => $amount,
+            'dt_payment'       => $dt_payment,
+            'transaction_id'   => $transaction_id,
+            'payment_type'     => $payment_type,
+            'payment_info'     => $payment_info,
+            'security_key'     => $security_key,
+        ];
+        $url = $this->endpoints['booking'] . '/commit_s_session/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Форматируем XML в array
      *
      * @param \SimpleXMLElement $data
