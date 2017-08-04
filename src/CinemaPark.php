@@ -299,6 +299,27 @@ class CinemaPark
     }
 
     /**
+     * Открытие сессии выбора мест после фиксации.
+     *
+     * @param int    $multiplex_id
+     * @param int    $repertoir_id
+     * @param string $codeword
+     *
+     * @return array
+     */
+    public function editBooking($multiplex_id, $repertoir_id, $codeword)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'codeword'     => $codeword,
+        ];
+        $url = $this->endpoints['booking'] . '/edit_booking/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Форматируем XML в array
      *
      * @param \SimpleXMLElement $data
