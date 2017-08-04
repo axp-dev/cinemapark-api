@@ -161,6 +161,27 @@ class CinemaPark
     }
 
     /**
+     * Инициализация сессии выбора мест для бронирования или покупки
+     *
+     * @param int $multiplex_id
+     * @param int $repertoir_id
+     * @param int $mode
+     *
+     * @return array
+     */
+    public function initBSession($multiplex_id, $repertoir_id, $mode)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'mode'         => $mode,
+        ];
+        $url = $this->endpoints['booking'] . '/init_b_session/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Запрос к API
      *
      * @param string $url
