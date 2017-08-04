@@ -224,6 +224,31 @@ class CinemaPark
     }
 
     /**
+     * Действие с местом в сессии выбора мест
+     *
+     * @param int $multiplex_id
+     * @param int $repertoir_id
+     * @param int $b_session_id
+     * @param int $action_type
+     * @param int $seat_id
+     *
+     * @return array
+     */
+    public function seatAction($multiplex_id, $repertoir_id, $b_session_id, $action_type, $seat_id)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'b_session_id' => $b_session_id,
+            'action_type'  => $action_type,
+            'seat_id'      => $seat_id,
+        ];
+        $url = $this->endpoints['booking'] . '/seat_action/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Форматируем XML в array
      *
      * @param \SimpleXMLElement $data
