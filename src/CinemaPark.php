@@ -270,6 +270,35 @@ class CinemaPark
     }
 
     /**
+     * Закрытие сессии выбора мест, фиксация выбора мест.
+     *
+     * @param int    $multiplex_id
+     * @param int    $repertoir_id
+     * @param string $b_session_id
+     * @param int    $mode
+     * @param string $email
+     * @param int    $phone
+     * @param int    $provider_id
+     *
+     * @return array
+     */
+    public function commitBSession($multiplex_id, $repertoir_id, $b_session_id, $mode, $email, $phone, $provider_id)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'b_session_id' => $b_session_id,
+            'mode'         => $mode,
+            'email'        => $email,
+            'phone'        => $phone,
+            'provider_id'  => $provider_id,
+        ];
+        $url = $this->endpoints['booking'] . '/commit_b_session/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Форматируем XML в array
      *
      * @param \SimpleXMLElement $data
