@@ -320,6 +320,29 @@ class CinemaPark
     }
 
     /**
+     * Инициализация сессии оплаты.
+     *
+     * @param int    $multiplex_id
+     * @param int    $order_id
+     * @param string $codeword
+     * @param int    $provider_id
+     *
+     * @return array
+     */
+    public function initSSession($multiplex_id, $order_id, $codeword, $provider_id)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'order_id'     => $order_id,
+            'codeword'     => $codeword,
+            'provider_id'  => $provider_id,
+        ];
+        $url = $this->endpoints['booking'] . '/init_s_session/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
      * Форматируем XML в array
      *
      * @param \SimpleXMLElement $data
