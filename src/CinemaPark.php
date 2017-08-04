@@ -224,13 +224,13 @@ class CinemaPark
     }
 
     /**
-     * Действие с местом в сессии выбора мест
+     * Действие с местом в сессии выбора мест.
      *
-     * @param int $multiplex_id
-     * @param int $repertoir_id
-     * @param int $b_session_id
-     * @param int $action_type
-     * @param int $seat_id
+     * @param int    $multiplex_id
+     * @param int    $repertoir_id
+     * @param string $b_session_id
+     * @param int    $action_type
+     * @param int    $seat_id
      *
      * @return array
      */
@@ -244,6 +244,27 @@ class CinemaPark
             'seat_id'      => $seat_id,
         ];
         $url = $this->endpoints['booking'] . '/seat_action/?' . http_build_query($params);
+
+        return $this->query($url, 'xml');
+    }
+
+    /**
+     * Отмена/закрытие сессии выбора мест.
+     *
+     * @param int    $multiplex_id
+     * @param int    $repertoir_id
+     * @param string $b_session_id
+     *
+     * @return array
+     */
+    public function cancelBSession($multiplex_id, $repertoir_id, $b_session_id)
+    {
+        $params = [
+            'multiplex_id' => $multiplex_id,
+            'repertoir_id' => $repertoir_id,
+            'b_session_id' => $b_session_id,
+        ];
+        $url = $this->endpoints['booking'] . '/cancel_b_session/?' . http_build_query($params);
 
         return $this->query($url, 'xml');
     }
